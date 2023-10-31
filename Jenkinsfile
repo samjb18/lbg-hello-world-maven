@@ -7,14 +7,19 @@ pipeline {
         }
 
         stages {
-            stage('Checkout') {
+            stage('Compile') {
                 steps {
-                    // Get some code from a GitHub repository
-
-                    git branch: 'main', url: 'https://github.com/samjb18/lbg-hello-world-maven'
+                    // Run Maven on a Unix agent.
+                    sh "mvn clean compile"
                 }
             }
-            stage('Compile') {
+                stage('test') {
+                steps {
+                    // Run Maven on a Unix agent.
+                    sh "mvn clean compile"
+                }
+            }
+                stage('Package') {
                 steps {
                     // Run Maven on a Unix agent.
                     sh "mvn clean compile"
